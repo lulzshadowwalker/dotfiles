@@ -175,7 +175,7 @@ use({
   'nvim-lualine/lualine.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
   config = function()
-    require('lulzie.plugins.lualine')
+    require('lulzie/plugins/lualine')
   end,
 })
 
@@ -191,19 +191,136 @@ use({
 
 -- Display indentation lines.
 use({
-  'lukas-reineke/indent-blankline.nvim',
-  config = function()
-    require('lulzie/plugins/indent-blankline')
-  end,
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+        require('ibl').setup({
+            exclude = {
+                buftypes = { 'terminal' },
+                filetypes = { 'dashboard', 'NvimTree', 'packer', 'lsp-installer' }
+            },
+            scope = {
+                enabled = true,
+                show_end = true
+            }
+        })
+    end
 })
 
 -- Add a dashboard.
 use({
   'glepnir/dashboard-nvim',
+  event = 'VimEnter',
+  requires = {'nvim-tree/nvim-web-devicons'},
   config = function()
-    -- require('lulzie/plugins/dashboard-nvim')
+    require('lulzie/plugins/dashboard-nvim')
   end
 })
+
+-- Git integration.
+use({
+  'lewis6991/gitsigns.nvim',
+  config = function()
+    require('gitsigns').setup()
+    vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
+    vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
+    vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
+    vim.keymap.set('n', 'gS', ':Gitsigns undo_stage_hunk<CR>')
+    vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
+    vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
+  end,
+})
+
+-- Git commands.
+use({
+  'tpope/vim-fugitive',
+  requires = 'tpope/vim-rhubarb',
+})
+
+--- Floating terminal.
+use({
+  'voldikss/vim-floaterm',
+  config = function()
+    vim.g.floaterm_width = 0.8
+    vim.g.floaterm_height = 0.8
+    vim.keymap.set('n', '<C-j>', ':FloatermToggle<CR>')
+    vim.keymap.set('t', '<C-j>', '<C-\\><C-n>:FloatermToggle<CR>')
+    vim.cmd([[
+      highlight link Floaterm CursorLine
+      highlight link FloatermBorder CursorLineBg
+    ]])
+  end
+})
+
+-- Improved syntax highlighting
+use({
+  'nvim-treesitter/nvim-treesitter',
+  run = function()
+    require('nvim-treesitter.install').update({ with_sync = true })
+  end,
+  requires = {
+    -- 'JoosepAlviste/nvim-ts-context-commentstring',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  config = function()
+    require('lulzie/plugins/treesitter')
+  end,
+})
+
+-- Language Server Protocol.
+use({
+  'neovim/nvim-lspconfig',
+  requires = {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'b0o/schemastore.nvim',
+    'jose-elias-alvarez/null-ls.nvim',
+    'jayp0521/mason-null-ls.nvim',
+  },
+  config = function()
+    require('lulzie/plugins/lspconfig')
+  end,
+})
+
+-- Completion
+use({
+  'hrsh7th/nvim-cmp',
+  requires = {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    'onsails/lspkind-nvim',
+  },
+  config = function()
+    require('lulzie/plugins/cmp')
+  end,
+})
+
+-- Testing helper
+use({
+  'vim-test/vim-test',
+  config = function()
+    require('lulzie/plugins/vim-test')
+  end,
+})
+
+-- Github Copilot
+use({
+    'github/copilot.vim',
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+    end,
+  })
+
+use({
+    'IogaMaster/neocord',
+    config = function()
+      require('lulzie/plugins/neocord')
+    end
+  })
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
