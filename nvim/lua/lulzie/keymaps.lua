@@ -37,3 +37,12 @@ vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
 vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
 vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
+
+-- Close all open buffers 
+vim.keymap.set('n', '<Leader>qq', ':bufdo bd<CR>')
+
+-- Reopen last buffer
+vim.keymap.set('n', '<Leader>t', ':e#<CR>')
+
+-- Re-indent the entire file
+vim.keymap.set('n', '<Leader>==', 'mzggVG=`z')

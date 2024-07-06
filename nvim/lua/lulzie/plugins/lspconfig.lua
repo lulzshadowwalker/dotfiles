@@ -7,6 +7,9 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- PHP
 require('lspconfig').intelephense.setup({ capabilities = capabilities })
 
+-- Golang 
+require('lspconfig').gopls.setup({ capabilities = capabilities })
+
 -- Tailwind CSS
 require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
 
