@@ -40,6 +40,18 @@ vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
 
 -- Close all open buffers 
 vim.keymap.set('n', '<Leader>qq', ':bufdo bd<CR>')
+-- Close all open buffers except the current one
+local function close_all_buffers_except_current()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local buffers = vim.api.nvim_list_bufs()
+
+  for _, buf in ipairs(buffers) do
+    if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then
+      vim.cmd('bd ' .. buf)
+    end
+  end
+end
+vim.keymap.set('n', '<Leader>qo', close_all_buffers_except_current, { silent = true, noremap = true });
 
 -- Reopen last buffer
 vim.keymap.set('n', '<Leader>t', ':e#<CR>')
