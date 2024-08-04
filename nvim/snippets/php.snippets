@@ -1,3 +1,8 @@
+snippet php "php file boilerplate"
+    <?php
+
+    namespace Test/${0};
+
 snippet pubf "public method"
 	public function ${1}(${2}): $3
 	{
@@ -16,7 +21,7 @@ snippet prif "private method"
 		${0}
 	}
 
-snippet testt "test method (prefix)"
+snippet testp "test method (prefix)"
 	public function test_${1}()
 	{
 		${0}
@@ -28,3 +33,11 @@ snippet testa "test method (annotation)"
 	{
 		${0}
 	}
+
+snippet testc "test class"
+    use Tests\TestCase;
+
+    class ${1}Test extends TestCase
+    {
+        ${0}
+    }

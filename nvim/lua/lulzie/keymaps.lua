@@ -58,3 +58,6 @@ vim.keymap.set('n', '<Leader>t', ':e#<CR>')
 
 -- Re-indent the entire file
 vim.keymap.set('n', '<Leader>==', 'mzggVG=`z')
+
+-- Uppercase the previous word when sitting on a trailing space
+vim.keymap.set('n', '<leader>u', 'mzBvEU`z')

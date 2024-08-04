@@ -338,10 +338,18 @@ use({
     -- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
     -- requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
     config = function()
-        require('render-markdown').setup({})
-        vim.keymap.set('n', '<Leader>md', ':RenderMarkdown toggle<CR>', { noremap = true, silent = true })
+      require('render-markdown').setup({})
+      vim.keymap.set('n', '<Leader>md', ':RenderMarkdown toggle<CR>', { noremap = true, silent = true })
     end,
-})
+  })
+
+use ({
+    'tpope/vim-projectionist',
+    requires = 'tpope/vim-dispatch',
+    config = function()
+      require('lulzie/plugins/projectionist')
+    end
+  })
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
