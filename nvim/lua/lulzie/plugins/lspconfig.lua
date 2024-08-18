@@ -7,7 +7,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- PHP
 require('lspconfig').intelephense.setup({ capabilities = capabilities })
 
--- Golang 
+-- Golang
 require('lspconfig').gopls.setup({ capabilities = capabilities })
 
 -- Tailwind CSS
@@ -18,6 +18,26 @@ require('lspconfig').tsserver.setup({ capabilities = capabilities })
 
 -- ESLint
 require('lspconfig').eslint.setup({ capabilities = capabilities })
+
+-- bashls
+require('lspconfig').bashls.setup({ capabilities = capabilities })
+
+-- Zig : zls
+require('lspconfig').zls.setup({ capabilities = capabilities })
+
+require('lspconfig').dartls.setup({
+    capabilities = capabilities,
+    settings = {
+      dart = {
+        analysisExcludedFolders = {
+          vim.fn.expand('${HOME}/AppData/Local/Pub/Cache'),
+          vim.fn.expand('${HOME}/.pub-cache'),
+          vim.fn.expand('/opt/homebrew/'),
+          vim.fn.expand('${HOME}/tools/flutter/'),
+        },
+      },
+    },
+  })
 
 -- JSON
 require('lspconfig').jsonls.setup({
@@ -62,6 +82,9 @@ vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 vim.keymap.set('n', '<Leader>bs', ':Telescope lsp_document_symbols<CR>', opts) -- [b]uffer [s]ymbols
 vim.keymap.set('n', '<Leader>bf', ':Format<CR>', opts) -- [b]uffer [f]ormat
 vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- [c]ode [a]ction
+
+-- not sure if this one works
+-- vim.keymap.set('i', '<leader>c', ':lua vim.lsp.buf.completion()<CR>', opts) -- [c]ompletion
 
 -- Commands
 vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format({ timeout_ms = 5000 }) end, {})

@@ -26,11 +26,12 @@ local use = require('packer').use
 -- Packer can manage itself.
 use('wbthomason/packer.nvim')
 
--- One Dark theme.
+-- Gruber darker theme.
 use({
-    'jessarcher/onedark.nvim',
+    'lulzshadowwalker/gruber-darker.nvim',
+    commit = 'a2dda61d9c1225e16951a51d6b89795b0ac35cd6',
     config = function()
-      vim.cmd('colorscheme onedark')
+      vim.cmd('colorscheme gruber-darker')
 
       vim.api.nvim_set_hl(0, 'FloatBorder', {
           fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -183,7 +184,7 @@ use({
 use({
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    after = 'onedark.nvim',
+    after = 'gruber-darker.nvim',
     config = function()
       require('lulzie/plugins/bufferline')
     end,
