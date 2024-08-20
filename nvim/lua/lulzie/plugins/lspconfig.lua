@@ -25,6 +25,9 @@ require('lspconfig').bashls.setup({ capabilities = capabilities })
 -- Zig : zls
 require('lspconfig').zls.setup({ capabilities = capabilities })
 
+-- C++ : clangd
+require('lspconfig').clangd.setup({ capabilities = capabilities })
+
 require('lspconfig').dartls.setup({
     capabilities = capabilities,
     settings = {

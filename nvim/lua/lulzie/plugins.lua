@@ -352,6 +352,29 @@ use ({
     end
   })
 
+use ({
+    'mfussenegger/nvim-dap',
+    requires = {
+      -- 'theHamsta/nvim-dap-virtual-text',
+      'nvim-neotest/nvim-nio', --  NOTE: required by nvim-dap-ui
+      'rcarriga/nvim-dap-ui',
+      'leoluz/nvim-dap-go',
+      -- 'mfussenegger/nvim-dap-python',
+      -- 'nvim-telescope/telescope-dap.nvim',
+    },
+    config = function()
+      require('lulzie/plugins/dap')
+    end
+  })
+
+use ({
+    'eriks47/generate.nvim',
+    requires = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      vim.keymap.set('n', '<Leader>cpp', ':Generate implementations<CR>')
+    end
+  })
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if packer_bootstrap then
