@@ -32,6 +32,22 @@ vim.g.projectionist_heuristics = {
       type = 'migration',
     },
   },
+
+
+  ['pubspec.yaml'] = {
+    ['*'] = {
+      start = 'dashmon',
+      console = 'dart run build_runner watch --delete-conflicting-outputs',
+    },
+    ['lib/*.dart'] = {
+      type = 'source',
+      alternate = 'test/{}_test.dart',
+    },
+    ['test/*_test.dart'] = {
+      type = 'test',
+      alternate = 'lib/{}.dart',
+    },
+  }
 }
 
 vim.keymap.set('n', '<leader>a', ':a<CR>', { silent = true })

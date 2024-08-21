@@ -252,6 +252,13 @@ use({
     end,
   })
 
+use ({
+    'williamboman/mason.nvim',
+    config = function()
+      require('lulzie/plugins/mason')
+    end
+  })
+
 -- Language Server Protocol.
 use({
     'neovim/nvim-lspconfig',
@@ -359,7 +366,8 @@ use ({
       'nvim-neotest/nvim-nio', --  NOTE: required by nvim-dap-ui
       'rcarriga/nvim-dap-ui',
       'leoluz/nvim-dap-go',
-      -- 'mfussenegger/nvim-dap-python',
+      'williamboman/mason.nvim', --  NOTE: required by mason-nvim-dap
+      'jay-babu/mason-nvim-dap.nvim',
       -- 'nvim-telescope/telescope-dap.nvim',
     },
     config = function()
