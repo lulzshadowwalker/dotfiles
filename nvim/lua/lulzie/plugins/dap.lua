@@ -7,6 +7,16 @@ require('mason-nvim-dap').setup({
     handlers = {}, -- sets up dap in the predefined manner
   })
 
+require('flutter-tools').setup({
+    debugger = {
+      run_via_dap = true,
+      enabled = true,
+      register_configurations = function(_)
+        dap.configurations.dart = {}
+      end,
+    }
+  })
+
 -- dapui
 local dapui = require('dapui')
 dap.listeners.before.attach.dapui_config = dapui.open

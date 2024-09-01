@@ -368,6 +368,7 @@ use ({
       'leoluz/nvim-dap-go',
       'williamboman/mason.nvim', --  NOTE: required by mason-nvim-dap
       'jay-babu/mason-nvim-dap.nvim',
+      'akinsho/flutter-tools.nvim',
       -- 'nvim-telescope/telescope-dap.nvim',
     },
     config = function()
