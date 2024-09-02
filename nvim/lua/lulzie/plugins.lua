@@ -1,25 +1,27 @@
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+    local fn = vim.fn
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
 
 local packer_bootstrap = ensure_packer()
 
 require('packer').reset()
 require('packer').init({
-    compile_path = vim.fn.stdpath('data')..'/site/plugin/packer_compiled.lua',
+    compile_path = vim.fn.stdpath('data') .. '/site/plugin/packer_compiled.lua',
     display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'solid' })
-      end,
-    },
-  })
+        open_fn = function()
+            return require('packer.util').float({
+                border = 'solid'
+            })
+        end
+    }
+})
 
 local use = require('packer').use
 
@@ -28,32 +30,42 @@ use('wbthomason/packer.nvim')
 
 -- Gruber darker theme.
 use({
-    'lulzshadowwalker/gruber-darker.nvim',
-    commit = 'a2dda61d9c1225e16951a51d6b89795b0ac35cd6',
+    'jessarcher/onedark.nvim',
     config = function()
-      vim.cmd('colorscheme gruber-darker')
-
-      vim.api.nvim_set_hl(0, 'FloatBorder', {
-          fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-          bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+        vim.cmd('colorscheme onedark')
+        vim.api.nvim_set_hl(0, 'NormalFloat', {
+            bg = '#282C33'
         })
 
-      -- Make the cursor line background invisible
-      vim.api.nvim_set_hl(0, 'CursorLineBg', {
-          fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-          bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+        vim.api.nvim_set_hl(0, 'FloatBorder', {
+            fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+            bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background
         })
 
-      vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
-
-      vim.api.nvim_set_hl(0, 'StatusLineNonText', {
-          fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
-          bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
+        -- Make the cursor line background invisible
+        vim.api.nvim_set_hl(0, 'CursorLineBg', {
+            fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+            bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background
         })
 
-      vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
-    end,
-  })
+        vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', {
+            fg = '#30323E'
+        })
+
+        vim.api.nvim_set_hl(0, 'StatusLineNonText', {
+            fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
+            bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background
+        })
+
+        vim.api.nvim_set_hl(0, 'IndentBlanklineChar', {
+            fg = '#2F313C'
+        })
+
+        vim.api.nvim_set_hl(0, 'WinSeparator', {
+            fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background
+        })
+    end
+})
 
 -- Commenting support.
 use('tpope/vim-commentary')
@@ -91,121 +103,120 @@ use('jessarcher/vim-heritage')
 -- Text objects for HTML attributes.
 use({
     'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user',
-  })
+    requires = 'kana/vim-textobj-user'
+})
 
 -- Automatically set the working directory to the project root.
 use({
     'airblade/vim-rooter',
     setup = function()
-      -- Instead of this running every time we open a file, we'll just run it once when Vim starts.
-      vim.g.rooter_manual_only = 1
+        -- Instead of this running every time we open a file, we'll just run it once when Vim starts.
+        vim.g.rooter_manual_only = 1
     end,
     config = function()
-      vim.cmd('Rooter')
-    end,
-  })
+        vim.cmd('Rooter')
+    end
+})
 
 -- Automatically add closing brackets, quotes, etc.
 use({
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup()
-    end,
-  })
+        require('nvim-autopairs').setup()
+    end
+})
 
 -- Add smooth scrolling to avoid jarring jumps
 use({
     'karb94/neoscroll.nvim',
     config = function()
-      require('neoscroll').setup()
-    end,
-  })
+        require('neoscroll').setup()
+    end
+})
 
 -- All closing buffers without closing the split window.
 use({
     'famiu/bufdelete.nvim',
     config = function()
-      vim.keymap.set('n', '<Leader>q', ':Bdelete<CR>')
-    end,
-  })
+        vim.keymap.set('n', '<Leader>q', ':Bdelete<CR>')
+    end
+})
 
 -- Split arrays and methods onto multiple lines, or join them back up.
 use({
     'AndrewRadev/splitjoin.vim',
     config = function()
-      vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
-      vim.g.splitjoin_trailing_comma = 1
-      vim.g.splitjoin_php_method_chain_full = 1
-    end,
-  })
+        vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+        vim.g.splitjoin_trailing_comma = 1
+        vim.g.splitjoin_php_method_chain_full = 1
+    end
+})
 
 -- Automatically fix indentation when pasting code.
 use({
     'sickill/vim-pasta',
     config = function()
-      vim.g.pasta_disabled_filetypes = { 'fugitive' }
-    end,
-  })
+        vim.g.pasta_disabled_filetypes = {'fugitive'}
+    end
+})
 
 -- Fuzzy finder
 use({
     'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons',
-      'nvim-telescope/telescope-live-grep-args.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    },
+    requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'nvim-telescope/telescope-live-grep-args.nvim',
+                {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
+    }},
     config = function()
-      require('lulzie/plugins/telescope')
-    end,
-  })
+        require('lulzie/plugins/telescope')
+    end
+})
 
 -- File tree sidebar
 use({
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('lulzie/plugins/nvim-tree')
-    end,
-  })
+        require('lulzie/plugins/nvim-tree')
+    end
+})
 
 -- A Status line.
 use({
     'nvim-lualine/lualine.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('lulzie/plugins/lualine')
-    end,
-  })
+        require('lulzie/plugins/lualine')
+    end
+})
 
 -- Display buffers as tabs.
 use({
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    after = 'gruber-darker.nvim',
+    after = 'onedark.nvim',
     config = function()
-      require('lulzie/plugins/bufferline')
-    end,
-  })
+        require('lulzie/plugins/bufferline')
+    end
+})
 
 -- Display indentation lines.
 use({
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require('ibl').setup({
-          exclude = {
-            buftypes = { 'terminal' },
-            filetypes = { 'dashboard', 'NvimTree', 'packer', 'lsp-installer' }
-          },
-          scope = {
-            enabled = true,
-            show_end = true
-          }
+        require('ibl').setup({
+            exclude = {
+                buftypes = {'terminal'},
+                filetypes = {'dashboard', 'NvimTree', 'packer', 'lsp-installer'}
+            },
+            scope = {
+                enabled = true,
+                show_end = true
+            }
         })
     end
-  })
+})
 
 -- Add a dashboard.
 use({
@@ -213,186 +224,185 @@ use({
     event = 'VimEnter',
     requires = {'nvim-tree/nvim-web-devicons'},
     config = function()
-      require('lulzie/plugins/dashboard-nvim')
+        require('lulzie/plugins/dashboard-nvim')
     end
-  })
+})
 
 -- Git integration.
 use({
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
-      vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
-      vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
-      vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
-      vim.keymap.set('n', 'gS', ':Gitsigns undo_stage_hunk<CR>')
-      vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
-      vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
-    end,
-  })
+        require('gitsigns').setup()
+        vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
+        vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
+        vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
+        vim.keymap.set('n', 'gS', ':Gitsigns undo_stage_hunk<CR>')
+        vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
+        vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
+    end
+})
 
 -- Git commands.
 use({
     'tpope/vim-fugitive',
-    requires = 'tpope/vim-rhubarb',
-  })
+    requires = 'tpope/vim-rhubarb'
+})
 
 -- Improved syntax highlighting
 use({
     'nvim-treesitter/nvim-treesitter',
     run = function()
-      require('nvim-treesitter.install').update({ with_sync = true })
+        require('nvim-treesitter.install').update({
+            with_sync = true
+        })
     end,
-    requires = {
-      -- 'JoosepAlviste/nvim-ts-context-commentstring',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
+    requires = { -- 'JoosepAlviste/nvim-ts-context-commentstring',
+    'nvim-treesitter/nvim-treesitter-textobjects'},
     config = function()
-      require('lulzie/plugins/treesitter')
-    end,
-  })
+        require('lulzie/plugins/treesitter')
+    end
+})
 
-use ({
+use({
     'williamboman/mason.nvim',
     config = function()
-      require('lulzie/plugins/mason')
+        require('lulzie/plugins/mason')
     end
-  })
+})
 
 -- Language Server Protocol.
 use({
     'neovim/nvim-lspconfig',
-    requires = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'b0o/schemastore.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'jayp0521/mason-null-ls.nvim',
-    },
+    requires = {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', 'b0o/schemastore.nvim',
+                'jose-elias-alvarez/null-ls.nvim', 'jayp0521/mason-null-ls.nvim'},
     config = function()
-      require('lulzie/plugins/lspconfig')
-    end,
-  })
+        require('lulzie/plugins/lspconfig')
+    end
+})
 
 -- Completion
 use({
     'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind-nvim',
-    },
+    requires = {'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-nvim-lsp-signature-help', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',
+                'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'onsails/lspkind-nvim'},
     config = function()
-      require('lulzie/plugins/cmp')
-    end,
-  })
+        require('lulzie/plugins/cmp')
+    end
+})
 
 -- Testing helper
 use({
     'vim-test/vim-test',
     config = function()
-      require('lulzie/plugins/vim-test')
-    end,
-  })
+        require('lulzie/plugins/vim-test')
+    end
+})
 
 -- Github Copilot
 use({
     'github/copilot.vim',
     config = function()
-      vim.g.copilot_no_tab_map = true
-      vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-    end,
-  })
+        vim.g.copilot_no_tab_map = true
+        vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', {
+            silent = true,
+            expr = true
+        })
+    end
+})
 
 use({
     'IogaMaster/neocord',
     config = function()
-      require('lulzie/plugins/neocord')
+        require('lulzie/plugins/neocord')
     end
-  })
+})
 
 use({
     'folke/todo-comments.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = {'nvim-lua/plenary.nvim'},
     config = function()
-      require('todo-comments').setup()
+        require('todo-comments').setup()
     end
-  })
+})
 
 --- Floating terminal.
 use({
     'voldikss/vim-floaterm',
     config = function()
-      vim.g.floaterm_width = 0.8
-      vim.g.floaterm_height = 0.8
-      vim.keymap.set('n', '<A-j>', ':FloatermToggle<CR>') 
-      vim.keymap.set('t', '<A-j>', '<C-\\><C-n>:FloatermToggle<CR>')
-      vim.cmd([[
-      highlight link Floaterm CursorLine
-      highlight link FloatermBorder CursorLineBg
-    ]])
+        vim.g.floaterm_width = 0.8
+        vim.g.floaterm_height = 0.8
+        vim.keymap.set('n', '<A-j>', ':FloatermToggle<CR>')
+        vim.keymap.set('t', '<A-j>', '<C-\\><C-n>:FloatermToggle<CR>')
+        vim.cmd([[
+highlight link Floaterm CursorLine
+highlight link FloatermBorder CursorLineBg
+]])
     end
-  })
+})
 
 use({
     'MeanderingProgrammer/markdown.nvim',
     -- as = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-    after = { 'nvim-treesitter' },
-    requires = { 'echasnovski/mini.nvim', opt = true }, -- if you use the mini.nvim suite
+    after = {'nvim-treesitter'},
+    requires = {
+        'echasnovski/mini.nvim',
+        opt = true
+    }, -- if you use the mini.nvim suite
     -- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
     -- requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
     config = function()
-      require('render-markdown').setup({})
-      vim.keymap.set('n', '<Leader>md', ':RenderMarkdown toggle<CR>', { noremap = true, silent = true })
-    end,
-  })
+        require('render-markdown').setup({})
+        vim.keymap.set('n', '<Leader>md', ':RenderMarkdown toggle<CR>', {
+            noremap = true,
+            silent = true
+        })
+    end
+})
 
-use ({
+use({
     'tpope/vim-projectionist',
     requires = 'tpope/vim-dispatch',
     config = function()
-      require('lulzie/plugins/projectionist')
+        require('lulzie/plugins/projectionist')
     end
-  })
+})
 
-use ({
+use({
     'mfussenegger/nvim-dap',
-    requires = {
-      -- 'theHamsta/nvim-dap-virtual-text',
-      'nvim-neotest/nvim-nio', --  NOTE: required by nvim-dap-ui
-      'rcarriga/nvim-dap-ui',
-      'leoluz/nvim-dap-go',
-      'williamboman/mason.nvim', --  NOTE: required by mason-nvim-dap
-      'jay-babu/mason-nvim-dap.nvim',
-      'akinsho/flutter-tools.nvim',
-      -- 'nvim-telescope/telescope-dap.nvim',
+    requires = { -- 'theHamsta/nvim-dap-virtual-text',
+    'nvim-neotest/nvim-nio', --  NOTE: required by nvim-dap-ui
+    'rcarriga/nvim-dap-ui', 'leoluz/nvim-dap-go', 'williamboman/mason.nvim', --  NOTE: required by mason-nvim-dap
+    'jay-babu/mason-nvim-dap.nvim', 'akinsho/flutter-tools.nvim' -- 'nvim-telescope/telescope-dap.nvim',
     },
     config = function()
-      require('lulzie/plugins/dap')
+        require('lulzie/plugins/dap')
     end
-  })
+})
 
-use ({
+use({
     'eriks47/generate.nvim',
     requires = 'nvim-treesitter/nvim-treesitter',
     config = function()
-      vim.keymap.set('n', '<Leader>cpp', ':Generate implementations<CR>')
+        vim.keymap.set('n', '<Leader>cpp', ':Generate implementations<CR>')
     end
-  })
+})
+
+use({
+    'folke/zen-mode.nvim',
+    config = function()
+        require('lulzie/plugins/zen-mode')
+    end
+})
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if packer_bootstrap then
-  require('packer').sync()
+    require('packer').sync()
 end
 
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile>
-  augroup end
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost plugins.lua source <afile>
+augroup end
 ]])

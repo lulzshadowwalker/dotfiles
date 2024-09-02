@@ -7,6 +7,7 @@ mason.setup({
       'clangd',
       'eslint',
       'eslint_d',
+      'lua_ls',
       'gopls',
       'intelephense',
       'prettierd',

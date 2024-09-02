@@ -28,6 +28,9 @@ require('lspconfig').zls.setup({ capabilities = capabilities })
 -- C++ : clangd
 require('lspconfig').clangd.setup({ capabilities = capabilities })
 
+-- Lua : lua-ls
+require('lspconfig').lua_ls.setup({ capabilities = capabilities })
+
 require('lspconfig').dartls.setup({
     capabilities = capabilities,
     settings = {
