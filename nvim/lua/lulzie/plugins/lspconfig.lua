@@ -4,6 +4,8 @@ require('mason-lspconfig').setup({ automatic_installation = true })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- TODO: Automate this process to automatically register LSP servers from Mason
+
 -- PHP
 require('lspconfig').intelephense.setup({ capabilities = capabilities })
 
@@ -14,7 +16,7 @@ require('lspconfig').gopls.setup({ capabilities = capabilities })
 require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
 
 -- Typescript
-require('lspconfig').tsserver.setup({ capabilities = capabilities })
+require('lspconfig').ts_ls.setup({ capabilities = capabilities })
 
 -- ESLint
 require('lspconfig').eslint.setup({ capabilities = capabilities })
@@ -30,6 +32,9 @@ require('lspconfig').clangd.setup({ capabilities = capabilities })
 
 -- Lua : lua-ls
 require('lspconfig').lua_ls.setup({ capabilities = capabilities })
+
+-- Meson : mesonlsp
+require('lspconfig').mesonlsp.setup({ capabilities = capabilities })
 
 require('lspconfig').dartls.setup({
     capabilities = capabilities,

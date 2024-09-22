@@ -14,7 +14,8 @@ mason.setup({
       'jsonls',
       'tailwindcss',
       'tsserver',
-      'zls'
+      'zls',
+      'masonlsp',
     }
   })
 
