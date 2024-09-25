@@ -22,4 +22,16 @@ return {
   -- 		},
   -- 	},
   -- },
+
+  {
+    "vyfor/cord.nvim",
+    build = "./build || .\\build",
+    event = "VeryLazy",
+    opts = {}, -- calls require('cord').setup()
+  },
+
+  {
+    "vim-test/vim-test",
+    event = "VeryLazy",
+  },
 }

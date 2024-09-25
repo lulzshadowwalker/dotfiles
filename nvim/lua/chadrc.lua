@@ -14,4 +14,15 @@ M.base46 = {
 	-- },
 }
 
+M.ui = {
+  tabufline = {
+    order = { "treeOffset", "buffers", "tabs", "btns", "lulzie" },
+    modules = {
+      lulzie = function()
+        return "lulzie "
+      end,
+    }
+  },
+}
+
 return M
