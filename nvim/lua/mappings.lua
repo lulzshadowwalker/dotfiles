@@ -8,6 +8,14 @@ map("n", "<Leader>ts", ":TestSuite<CR>", { desc = "Test Suite" })
 map("n", "<Leader>tl", ":TestLast<CR>", { desc = "Test Last" })
 map("n", "<Leader>tv", ":TestVisit<CR>", { desc = "Test Visit" })
 
+map("n", "ds", function() require("telescope.builtin").lsp_document_symbols() end, { desc = "LSP Document symbols" })
+
+-- Reselect visual selection after indenting.
+map('v', '<', '<gv')
+map('v', '>', '>gv')
+
+map('n', '<leader>k', ':nohl<CR>', { desc = 'Clear highlights' })
+
 function Close_others()
   local current = vim.api.nvim_get_current_buf()
   local bufs = vim.api.nvim_list_bufs()
@@ -21,4 +29,6 @@ end
 
 map("n", "<leader>qq", "<cmd>bufdo bd<CR>", { desc = "Close all open buffers" })
 map("n", "<leader>qo", Close_others, { desc = "Close all open buffers except current one" })
+
+map("n", "<leader>==", "mmggVG=`m", { desc = "Auto indent the whole file" })
 
