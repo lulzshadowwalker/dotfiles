@@ -36,3 +36,4 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
 kitty/kitty.conf.bak
+nvim/tmux-client-2979.log
