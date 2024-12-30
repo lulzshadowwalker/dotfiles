@@ -8,7 +8,9 @@ map("n", "<Leader>ts", ":TestSuite<CR>", { desc = "Test Suite" })
 map("n", "<Leader>tl", ":TestLast<CR>", { desc = "Test Last" })
 map("n", "<Leader>tv", ":TestVisit<CR>", { desc = "Test Visit" })
 
-map("n", "ds", function() require("telescope.builtin").lsp_document_symbols() end, { desc = "LSP Document symbols" })
+map("n", "ds", function()
+  require("telescope.builtin").lsp_document_symbols()
+end, { desc = "LSP Document symbols" })
 
 -- Reselect visual selection after indenting.
 map("v", "<", "<gv")
@@ -34,7 +36,6 @@ map("n", "<leader>qo", Close_others, { desc = "Close all open buffers except cur
 
 map("n", "<leader>==", "mmggVG=`m", { desc = "Auto indent the whole file" })
 
-
 function Close_hidden_buffers()
   local current = vim.api.nvim_get_current_buf()
   local bufs = vim.api.nvim_list_bufs()
@@ -56,3 +57,19 @@ function Close_hidden_buffers()
 end
 
 map("n", "<leader>qQ", Close_hidden_buffers, { desc = "Close all hidden buffers" })
+
+map("n", "<leader>sp", function()
+  require("base46").toggle_transparency()
+end, { desc = "Toggle transparency" })
+
+function toggle_terminal()
+  require("nvchad.term").toggle { pos = "sp", id = "xz" }
+end
+
+function toggle_floating_terminal()
+  require("nvchad.term").toggle { pos = "float", id = "xz" }
+end
+
+--  NOTE: Default mappings for Nvchad are <M-j> and <M-i> but I cannot find a way to remap alt/opt to meta for Ghostty terminal
+map({ "n", "t" }, "∆", toggle_terminal, { desc = "Toggle terminal" })
+map({ "n", "t" }, "ø", toggle_floating_terminal, { desc = "Toggle floating terminal" })
