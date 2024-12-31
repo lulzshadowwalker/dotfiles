@@ -20,13 +20,49 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     opts = {
-      ensure_installed = { "php", "typescript", "lua", "json", "html", "css", "javascript", "go", "dart", "tsx", "c", "cpp", "vue", "templ" },
+      ensure_installed = {
+        "php",
+        "typescript",
+        "lua",
+        "json",
+        "html",
+        "css",
+        "javascript",
+        "go",
+        "dart",
+        "tsx",
+        "c",
+        "cpp",
+        "vue",
+        "templ",
+      },
     },
-    config = function ()
+    config = function()
       local map = vim.keymap.set
       map("n", "<leader>sc", ":TSContextToggle<CR>", { desc = "[S]itter [C]ontext. Toggle Treesitter sticky context" })
     end,
-    dependencies = { "nvim-treesitter/nvim-treesitter-context" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-context",
+      {
+        "windwp/nvim-ts-autotag",
+        opts = {
+          opts = {
+            -- Defaults
+            enable_close = true, -- Auto close tags
+            enable_rename = true, -- Auto rename pairs of tags
+            enable_close_on_slash = false, -- Auto close on trailing </
+          },
+          -- Also override individual filetype configs, these take priority.
+          -- Empty by default, useful if one of the "opts" global settings
+          -- doesn't work well in a specific filetype
+          per_filetype = {
+            -- ["html"] = {
+            --   enable_close = false,
+            -- },
+          },
+        },
+      },
+    },
   },
 
   {
