@@ -26,3 +26,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank { higroup = "Visual", timeout = 50 }
   end,
 })
+
+--  NOTE: Templ
+vim.filetype.add({ extension = { templ = "templ" } })
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "*.templ", callback = function() vim.cmd("TSBufEnable highlight") end })

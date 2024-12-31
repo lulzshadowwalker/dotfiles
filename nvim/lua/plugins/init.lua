@@ -20,7 +20,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     opts = {
-      ensure_installed = { "php", "typescript", "lua", "json", "html", "css", "javascript", "go", "dart", "tsx", "c", "cpp", "vue" },
+      ensure_installed = { "php", "typescript", "lua", "json", "html", "css", "javascript", "go", "dart", "tsx", "c", "cpp", "vue", "templ" },
     },
     config = function ()
       local map = vim.keymap.set
@@ -29,12 +29,12 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter-context" },
   },
 
-  -- {
-  --   "vyfor/cord.nvim",
-  --   build = "./build || .\\build",
-  --   event = "VeryLazy",
-  --   opts = {}, -- calls require('cord').setup()
-  -- },
+  {
+    "vyfor/cord.nvim",
+    build = "./build || .\\build",
+    event = "VeryLazy",
+    opts = {}, -- calls require('cord').setup()
+  },
 
   {
     "vim-test/vim-test",
