@@ -45,6 +45,7 @@ return {
       "nvim-treesitter/nvim-treesitter-context",
       {
         "windwp/nvim-ts-autotag",
+        event = "BufReadPre", --  NOTE: "For those of you using lazy loading through a plugin manager (like lazy.nvim) lazy loading is not particularly necessary for this plugin. nvim-ts-autotag is efficient in choosing when it needs to load. If you still insist on lazy loading nvim-ts-autotag, then two good events to use are BufReadPre & BufNewFile."
         opts = {
           opts = {
             -- Defaults

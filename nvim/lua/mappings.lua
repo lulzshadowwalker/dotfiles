@@ -63,11 +63,11 @@ map("n", "<leader>sp", function()
 end, { desc = "Toggle transparency" })
 
 function toggle_terminal()
-  require("nvchad.term").toggle { pos = "sp", id = "xz" }
+  require("nvchad.term").toggle { pos = "sp", id = "lulzie-horizontal-terminal" }
 end
 
 function toggle_floating_terminal()
-  require("nvchad.term").toggle { pos = "float", id = "xz" }
+  require("nvchad.term").toggle { pos = "float", id = "lulzie-floating-terminal" }
 end
 
 --  NOTE: Default mappings for Nvchad are <M-j> and <M-i> but I cannot find a way to remap alt/opt to meta for Ghostty terminal
