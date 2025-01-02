@@ -73,3 +73,5 @@ end
 --  NOTE: Default mappings for Nvchad are <M-j> and <M-i> but I cannot find a way to remap alt/opt to meta for Ghostty terminal
 map({ "n", "t" }, "∆", toggle_terminal, { desc = "Toggle terminal" })
 map({ "n", "t" }, "ø", toggle_floating_terminal, { desc = "Toggle floating terminal" })
+
+map("n", "<leader>ng", ":Neogit<cr>", { desc = "Neogit open" })
