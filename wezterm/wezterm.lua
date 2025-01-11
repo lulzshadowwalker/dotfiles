@@ -21,7 +21,7 @@ config.window_padding = {
 }
 
 config.window_decorations = "RESIZE"
-config.font_size = 14
+config.font_size = 13
 
 -- and finally, return the configuration to wezterm
 return config

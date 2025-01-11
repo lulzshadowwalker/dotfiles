@@ -1,5 +1,5 @@
 return {
-  { "windwp/nvim-autopairs", enabled = false },
+  { "windwp/nvim-autopairs", enabled = true },
 
   {
     "stevearc/conform.nvim",

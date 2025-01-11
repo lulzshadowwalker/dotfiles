@@ -5,7 +5,7 @@ require "nvchad.options"
 local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 o.wrap = false
--- o.guicursor = ""
+o.guicursor = "" 
 o.relativenumber = true
 
 o.scrolloff = 8
@@ -27,6 +27,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", { callback = function() vim.cmd("TSBufEnable highlight") end })
+
 --  NOTE: Templ
 vim.filetype.add({ extension = { templ = "templ" } })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*.templ", callback = function() vim.cmd("TSBufEnable highlight") end })
