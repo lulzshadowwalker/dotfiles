@@ -31,11 +31,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     if vim.bo.filetype == "php" then
-      print ('php no')
       return
     end
 
-    print("setting hello")
     vim.cmd "TSBufEnable highlight"
   end,
 })
