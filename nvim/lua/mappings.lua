@@ -26,7 +26,11 @@ function Close_others()
 
   for _, buf in ipairs(bufs) do
     if current ~= buf and vim.api.nvim_buf_is_loaded(buf) then
-      vim.cmd("bd" .. buf)
+      --  NOTE: `pcall` because it errors out when trying to close terminal buffers
+      local err = pcall(vim.cmd, "bd" .. buf)
+      if err then
+        print("Error closing buffer")
+      end
     end
   end
 end
@@ -71,7 +75,15 @@ function toggle_floating_terminal()
 end
 
 --  NOTE: Default mappings for Nvchad are <M-j> and <M-i> but I cannot find a way to remap alt/opt to meta for Ghostty terminal
-map({ "n", "t" }, "∆", toggle_terminal, { desc = "Toggle terminal" })
+-- if vim.env.TERM == "xterm-ghostty" then
 map({ "n", "t" }, "ø", toggle_floating_terminal, { desc = "Toggle floating terminal" })
+map({ "n", "t" }, "∆", toggle_terminal, { desc = "Toggle terminal" })
+-- else
+map({ "n", "t" }, "<M-o>", toggle_floating_terminal, { desc = "Toggle floating terminal" })
+map({ "n", "t" }, "<M-j>", toggle_terminal, { desc = "Toggle terminal" })
+-- end
 
 map("n", "<leader>ng", ":Neogit<cr>", { desc = "Neogit open" })
+
+map("n", "<C-t>", function() require("nvchad.themes").open() end, { desc = "Nvchad open theme switcher" })
+map("n", "<C-w>", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help" }) --  NOTE: Also available as <leader>sh

@@ -3,6 +3,8 @@
 # background = 282c34
 background = 181818
 foreground = ffffff
+window-padding-x = 0
+window-padding-y = 0
 
 # Comments start with a `#` and are only valid on their own line.
 # Blank lines are ignored!
@@ -15,3 +17,4 @@ font-family =
 
 theme = GruvboxDarkHard
 
+# window-decoration = false

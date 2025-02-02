@@ -29,3 +29,6 @@ ln -s $DOTFILES/wezterm/wezterm.lua $HOME/.wezterm.lua
 rm -rf $HOME/.config/ghostty/config
 mkdir -p $HOME/.config/ghostty
 ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
+
+rm -rf $HOME/.config/nix
+ln -s $DOTFILES/nix $HOME/.config/nix
