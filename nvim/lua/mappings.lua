@@ -87,3 +87,6 @@ map("n", "<leader>ng", ":Neogit<cr>", { desc = "Neogit open" })
 
 map("n", "<C-t>", function() require("nvchad.themes").open() end, { desc = "Nvchad open theme switcher" })
 map("n", "<C-w>", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help" }) --  NOTE: Also available as <leader>sh
+
+map("i", ",,", "<esc>ml$a,<esc>`l", { desc = "Insert a comma at the end of the line" })
+map("i", ";;", "<esc>ml$a;<esc>`l", { desc = "Insert a comma at the end of the line" })
