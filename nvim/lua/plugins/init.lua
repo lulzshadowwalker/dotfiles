@@ -66,12 +66,13 @@ return {
     },
   },
 
-  -- {
-  --   "vyfor/cord.nvim",
-  --   build = "./build || .\\build",
-  --   event = "VeryLazy",
-  --   opts = {}, -- calls require('cord').setup()
-  -- },
+  {
+    "andweeb/presence.nvim",
+    event = "VeryLazy",
+    opts = {
+      main_image = "file",
+    },
+  },
 
   {
     "vim-test/vim-test",

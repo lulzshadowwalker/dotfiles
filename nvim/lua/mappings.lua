@@ -90,3 +90,8 @@ map("n", "<C-w>", function() vim.lsp.buf.signature_help() end, { desc = "Show si
 
 map("i", ",,", "<esc>ml$a,<esc>`l", { desc = "Insert a comma at the end of the line" })
 map("i", ";;", "<esc>ml$a;<esc>`l", { desc = "Insert a comma at the end of the line" })
+
+map("n", "<leader>qo", ":copen", { desc = "Quickfix open" })
+map("n", "<leader>qc", ":cclose", { desc = "Quickfix close" })
+map("n", "<leader>qn", ":cn", { desc = "Quickfix next" })
+map("n", "<leader>qp", ":cp", { desc = "Quickfix previous" })
