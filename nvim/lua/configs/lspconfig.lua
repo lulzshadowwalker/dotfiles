@@ -6,7 +6,7 @@ local lspconfig = require "lspconfig"
 --  NOTE: For Templ
 --  "The templ command must be in your system path for the LSP to be able to start. Ensure that you can run it from the command line before continuing."
 
-local servers = { "html", "cssls", "intelephense", "ts_ls", "gopls", "clangd", "tailwindcss", "volar", "templ", "htmx", "jsonls" }
+local servers = { "html", "cssls", "intelephense", "ts_ls", "gopls", "clangd", "tailwindcss", "volar", "templ", "htmx", "jsonls", "dartls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config

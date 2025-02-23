@@ -36,7 +36,10 @@ function Close_others()
 end
 
 map("n", "<leader>qq", "<cmd>bufdo bd<CR>", { desc = "Close all open buffers" })
-map("n", "<leader>qo", Close_others, { desc = "Close all open buffers except current one" })
+
+--  NOTE: Currently, we have another mapping that uses <leader>qo for quickfix open + this one seems to be a little buggy at times 
+--  iirc, when e.g. trying to close other buffer and you have zsh or terminal open
+-- map("n", "<leader>qo", Close_others, { desc = "Close all open buffers except current one" })
 
 map("n", "<leader>==", "mmggVG=`m", { desc = "Auto indent the whole file" })
 
@@ -91,7 +94,14 @@ map("n", "<C-w>", function() vim.lsp.buf.signature_help() end, { desc = "Show si
 map("i", ",,", "<esc>ml$a,<esc>`l", { desc = "Insert a comma at the end of the line" })
 map("i", ";;", "<esc>ml$a;<esc>`l", { desc = "Insert a comma at the end of the line" })
 
-map("n", "<leader>qo", ":copen", { desc = "Quickfix open" })
-map("n", "<leader>qc", ":cclose", { desc = "Quickfix close" })
-map("n", "<leader>qn", ":cn", { desc = "Quickfix next" })
-map("n", "<leader>qp", ":cp", { desc = "Quickfix previous" })
+map("n", "<leader>qo", ":copen<cr>", { desc = "Quickfix open" })
+map("n", "<leader>qc", ":cclose<cr>", { desc = "Quickfix close" })
+map("n", "<leader>qn", ":cn<cr>", { desc = "Quickfix next" })
+map("n", "<leader>qp", ":cp<cr>", { desc = "Quickfix previous" })
+
+map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]], { noremap = true, silent = false, desc = "Replace word under cursor" })
+
+map("c", "<M-b>", "<S-Left>", { noremap = true, desc = "Move one word left" })
+map("c", "<M-f>", "<S-Right>", { noremap = true, desc = "Move one word right" })
+map("c", "<C-a>", "<Home>", { noremap = true, desc = "Move to start of line" })
+map("c", "<C-w>", "<C-w>", { noremap = true, desc = "Delete previous word " })
