@@ -1,7 +1,7 @@
 # The syntax is "key = value". The whitespace around the
 # equals doesn't matter.
-# background = 282c34
-background = 181818
+background = 282c34
+# background = 181818
 foreground = ffffff
 window-padding-x = 0
 window-padding-y = 0
@@ -10,11 +10,31 @@ window-padding-y = 0
 # Blank lines are ignored!
 
 keybind = ctrl+z=close_surface
-keybind = ctrl+d=new_split:right
+# keybind = ctrl+d=new_split:right
 
 # Empty values reset the configuration to the default value
-font-family =
 
+# JetBrains Mono
+#   JetBrains Mono Regular Bold
+#   JetBrains Mono Regular ExtraBold
+#   JetBrains Mono Regular ExtraLight
+#   JetBrains Mono Regular Light
+#   JetBrains Mono Regular Medium
+#   JetBrains Mono Regular Regular
+#   JetBrains Mono Regular SemiBold
+#   JetBrains Mono Regular Thin
+
+font-family = JetBrains Mono Regular Regular
+font-family-bold = JetBrains Mono Regular Bold
+font-thicken = true
+font-thicken-strength = 175
+font-size = 14 
 theme = GruvboxDarkHard
 
+adjust-cell-height = 55%
+adjust-cursor-height = 8
+
 # window-decoration = false
+
+#  NOTE: Disable vertical splitting 
+keybind = cmd+d=unbind

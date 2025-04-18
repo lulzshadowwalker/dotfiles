@@ -5,7 +5,7 @@ require "nvchad.options"
 local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 o.wrap = false
-o.guicursor = ""
+-- o.guicursor = ""
 o.relativenumber = true
 
 o.scrolloff = 8
