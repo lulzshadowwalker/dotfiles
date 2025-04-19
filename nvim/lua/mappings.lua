@@ -77,6 +77,7 @@ function toggle_floating_terminal()
   require("nvchad.term").toggle { pos = "float", id = "lulzie-floating-terminal" }
 end
 
+--  TODO: There has to be a better way to map multiple keys to the same function
 --  NOTE: Default mappings for Nvchad are <M-j> and <M-i> but I cannot find a way to remap alt/opt to meta for Ghostty terminal
 -- if vim.env.TERM == "xterm-ghostty" then
 map({ "n", "t" }, "ø", toggle_floating_terminal, { desc = "Toggle floating terminal" })
