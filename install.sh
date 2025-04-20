@@ -32,3 +32,9 @@ ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
 
 rm -rf $HOME/.config/nix
 ln -s $DOTFILES/nix $HOME/.config/nix
+
+rm -rf $HOME/.config/fish
+ln -s $DOTFILES/fish $HOME/.config/fish
+
+rm -f $HOME/.config/starship.toml
+ln -s $DOTFILES/starship/starship.toml $HOME/.config/starship.toml
