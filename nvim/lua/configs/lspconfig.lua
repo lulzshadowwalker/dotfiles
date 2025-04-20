@@ -16,10 +16,11 @@ local servers = {
   "tailwindcss",
   "volar",
   "templ",
-  "htmx",
+  -- "htmx",
   "jsonls",
   "dartls",
   "zls",
+  "emmet_language_server",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
