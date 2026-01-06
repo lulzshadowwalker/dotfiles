@@ -12,7 +12,8 @@ local servers = {
   tailwindcss = "tailwindcss-language-server",
   jsonls = "json-lsp",
   dartls = nil, -- comes bundled with dart sdk
-  emmet_language_server = "emmet-ls"
+  emmet_language_server = "emmet-ls",
+  lua_ls = "lua-language-server",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -21,7 +22,7 @@ local mason_registry = require "mason-registry"
 
 -- uninstalled mason packages
 local mason_packages = vim.tbl_filter(function(pkg)
-  if pkg == nil then 
+  if pkg == nil then
     return false
   end
 
@@ -33,11 +34,11 @@ if #mason_packages > 0 then
 end
 
 for lsp, _ in pairs(servers) do
-    lspconfig[lsp].setup {
-      on_attach = nvlsp.on_attach,
-      on_init = nvlsp.on_init,
-      capabilities = nvlsp.capabilities,
-    }
+  lspconfig[lsp].setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
+  }
 end
 
 -- configuring single server, example: typescript

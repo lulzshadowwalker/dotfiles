@@ -49,8 +49,8 @@ return {
         opts = {
           opts = {
             -- Defaults
-            enable_close = true, -- Auto close tags
-            enable_rename = true, -- Auto rename pairs of tags
+            enable_close = true,           -- Auto close tags
+            enable_rename = true,          -- Auto rename pairs of tags
             enable_close_on_slash = false, -- Auto close on trailing </
           },
           -- Also override individual filetype configs, these take priority.
@@ -75,4 +75,31 @@ return {
   -- {
   --   "alvan/vim-closetag",
   -- },
+
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    }
+  },
+
+  -- Add copilot-cmp ot the list of sources in nvim-cmp
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    enabled = true,
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, { name = "copilot" })
+    end,
+  },
+
 }
