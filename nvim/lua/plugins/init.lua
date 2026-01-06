@@ -22,18 +22,18 @@ return {
     opts = {
       ensure_installed = {
         "php",
-        "typescript",
-        "lua",
-        "json",
         "html",
         "css",
         "javascript",
-        "go",
-        "dart",
+        "jsx",
+        "typescript",
         "tsx",
+        "json",
+        "dart",
+        "go",
+        "lua",
         "c",
         "cpp",
-        "vue",
         "templ",
       },
     },
@@ -67,19 +67,12 @@ return {
   },
 
   {
-    "andweeb/presence.nvim",
-    event = "VeryLazy",
-    opts = {
-      main_image = "file",
-    },
-  },
-
-  {
     "vim-test/vim-test",
     event = "VeryLazy",
   },
 
-  {
-    "alvan/vim-closetag",
-  },
+  -- Do we need this? doesn't treesitter already do this?
+  -- {
+  --   "alvan/vim-closetag",
+  -- },
 }
