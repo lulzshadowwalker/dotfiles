@@ -53,3 +53,5 @@ macos-option-as-alt = left
 
 # Disable vertical splitting 
 keybind = cmd+d=unbind
+
+background = #1e222a 
