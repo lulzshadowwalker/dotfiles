@@ -22,7 +22,7 @@ map("n", "<leader>k", ":nohl<CR>", { desc = "Clear highlights" })
 map("n", "<leader>o", ":only<CR>", { desc = "Hide all other windows" })
 
 map("n", "<leader>co", "<cmd>:%bd|e#|bd#<CR>", { desc = "Close all open buffers except current one" })
-map("n", "<leader>ca", "<cmd>bufdo bd<CR>", { desc = "Close all open buffers" })
+map("n", "<leader>qq", "<cmd>bufdo bd<CR>", { desc = "Close all open buffers" })
 map("n", "<leader>==", "mmggVG=`m", { desc = "Auto indent the whole file" })
 
 function toggle_terminal()

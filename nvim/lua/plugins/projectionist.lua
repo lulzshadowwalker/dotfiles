@@ -1,7 +1,7 @@
 return {
   "tpope/vim-projectionist",
   event = "VeryLazy",
-  dependencies = {  "tpope/vim-dispatch", lazy = true },
+  dependencies = { "tpope/vim-dispatch", lazy = true },
   config = function()
     vim.g.projectionist_heuristics = {
       artisan = {
@@ -52,6 +52,25 @@ return {
           alternate = "lib/{}.dart",
         },
       },
+
+      ["vite.config.ts"] = {
+        ["*.spec.ts"] = {
+          type = "test",
+          alternate = "{}.ts",
+        },
+        ["*.ts"] = {
+          type = "source",
+          alternate = "{}.spec.ts",
+        },
+        ["*.spec.js"] = {
+          type = "test",
+          alternate = "{}.js",
+        },
+        ["*.js"] = {
+          type = "source",
+          alternate = "{}.spec.js",
+        },
+      }
     }
 
     vim.keymap.set("n", "<leader>a", ":a<CR>", { silent = true })

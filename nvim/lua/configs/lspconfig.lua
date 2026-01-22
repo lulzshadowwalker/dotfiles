@@ -14,6 +14,7 @@ local servers = {
   dartls = nil, -- comes bundled with dart sdk
   emmet_language_server = "emmet-ls",
   lua_ls = "lua-language-server",
+  templ = "templ",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -47,3 +48,6 @@ end
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
+
+
+vim.filetype.add({ extension = { templ = "templ" } })
