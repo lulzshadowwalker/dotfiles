@@ -99,7 +99,6 @@ return {
     enabled = true,
     opts = function(_, opts)
       table.insert(opts.sources, 1, { name = "copilot" })
-      table.insert(opts.sources, 1, { name = "codecompanion" })
     end,
   },
 }
