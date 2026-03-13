@@ -54,7 +54,7 @@ macos-option-as-alt = left
 # Disable vertical splitting 
 keybind = cmd+d=unbind
 
-background = #1e222a 
+background = #1C1C1C 
 
 # font-family = "JetBrainsMono Nerd Font Mono"
 # font-style-bold = "SemiBold"
