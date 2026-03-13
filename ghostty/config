@@ -61,8 +61,8 @@ background = #1e222a
 # font-style-italic = "Italic"
 # font-style-bold-italic = "SemiBold Italic"
 
-# font-family = "Monaspace Neon NF"
-font-family = "Monaspace Radon NF"
+font-family = "Monaspace Neon NF"
+# font-family = "Monaspace Radon NF"
 font-style-bold = "SemiBold"
 font-style-italic = "Italic"
 font-style-bold-italic = "SemiBold Italic"
@@ -74,3 +74,5 @@ bold-color = bright
 
 font-thicken = true
 font-thicken-strength = 25
+
+adjust-cell-height = 5
