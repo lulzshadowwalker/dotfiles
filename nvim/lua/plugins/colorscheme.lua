@@ -6,9 +6,17 @@
 local themes = {
   { repo = "pappasam/papercolor-theme-slim", name = "PaperColorSlim" },
   { repo = "blazkowolf/gruber-darker.nvim", name =  "gruber-darker"},
+  {
+    repo = "navarasu/onedark.nvim",
+    name = "onedark",
+    config = function ()
+      require("onedark").setup({ style = "warm" })
+      require("onedark").load()
+    end,
+  }
 }
 
-local theme = themes[1]
+local theme = themes[3]
 
 return {
   theme.repo,
@@ -19,6 +27,10 @@ return {
 		-- Like many other themes, this one has different styles, and you could load
 		-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
 		vim.cmd.colorscheme(theme.name)
+
+    if theme.config then
+      theme.config()
+    end
 	end,
 }
 
