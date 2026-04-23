@@ -47,7 +47,7 @@ return {
     -- Neovim. This is where `mason` and related plugins come into play.
     --
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-    -- and elegantly composed help section, `:help lsp-vs-treesitter`
+    -- and elegantly composed help section, `:help lsp-vs-treesitter`lsplua
 
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
@@ -123,7 +123,7 @@ return {
     ---@type table<string, vim.lsp.Config>
     local servers = {
       -- clangd = {},
-      -- gopls = {},
+      gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
       --
@@ -132,6 +132,8 @@ return {
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       ts_ls = {},
+
+      dartls = {},
 
       phpactor = {},
 
@@ -173,6 +175,10 @@ return {
     --
     -- You can press `g?` for help in this menu.
     local ensure_installed = vim.tbl_keys(servers or {})
+
+    --  NOTE: "dartls" is not available via mason
+    ensure_installed = vim.tbl_filter(function (server) return server ~= "dartls" end, ensure_installed)
+
     vim.list_extend(ensure_installed, {
       -- You can add other tools here that you want Mason to install
       'stylua',

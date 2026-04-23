@@ -6,3 +6,4 @@ return {
 		vim.keymap.set('n', '<leader>do', ':DiffviewOpen<CR>', { desc = 'Diffview Open' })
 	end
 }
+
