@@ -10,8 +10,8 @@ local themes = {
     repo = "navarasu/onedark.nvim",
     name = "onedark",
     config = function ()
-      require("onedark").setup({ style = "warm" })
-      require("onedark").load()
+      -- require("onedark").setup({ style = "warm" })
+      -- require("onedark").load()
     end,
   }
 }
