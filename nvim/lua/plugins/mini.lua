@@ -23,5 +23,13 @@ return {
 			},
 			use_icons = false, -- no nerdfont needed
 		})
+
+		require("mini.splitjoin").setup({
+			mappings = {
+				-- toggle = "gS", -- same muscle memory as splitjoin.vim
+				split = "gS", -- disable separate split/join if you only want toggle
+				join = "gJ",
+			},
+		})
 	end,
 }

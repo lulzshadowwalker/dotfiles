@@ -181,6 +181,9 @@ return {
     vim.list_extend(ensure_installed, {
       -- You can add other tools here that you want Mason to install
       'stylua',
+      'pint',
+      'prettierd',
+      'blade-formatter'
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
